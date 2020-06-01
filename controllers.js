@@ -6,7 +6,7 @@ const { countNumOfNonLexicalWords } = require('./services/helpers');
 let wordsPool;
 
 const calculateLd = (inputText, nlWordsList) => {
-	const inputWordsArr = splitToWords(formatSentence(inputText));
+	const inputWordsArr = splitToWords(formatSentence(inputText.toLowerCase()));
 	const numOfNonLexicalWords = countNumOfNonLexicalWords(inputWordsArr, nlWordsList);
 	const overall_ld = new Decimal(numOfNonLexicalWords / inputWordsArr.length)
 	const fixedLd = overall_ld.toFixed(2);
