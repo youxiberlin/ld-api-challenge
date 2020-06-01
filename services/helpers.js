@@ -6,6 +6,18 @@ const countNumOfNonLexicalWords = (input, list) => {
 	return counter
 };
 
+const countChars = (str) => {
+	const re = /[a-z]/gi;
+	return ((str || '').match(re) || []).length;
+};
+
+const countWords = (str) => {
+	const re = /[a-z]\w+/gi;
+	return ((str || '').match(re) || []).length;
+};
+
 module.exports = {
-	countNumOfNonLexicalWords
+	countNumOfNonLexicalWords,
+	countChars,
+	countWords
 }
