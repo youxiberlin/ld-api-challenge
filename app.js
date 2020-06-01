@@ -17,3 +17,5 @@ app.listen(port, () => logger.info(`App listening at port ${port}`));
 
 initializeMongoDB(mongoRoute)
 	.then(() => insertNonLexicalWords(nlwordsList));
+
+module.exports = app;
