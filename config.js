@@ -5,5 +5,9 @@ const mongodb = {
 	db: 'ld-api',
 };
 const mongoRoute = `mongodb://${mongodb.host}:${mongodb.port}/${mongodb.db}`
+const inputLimit = {
+	words: 100,
+	chars: 1000
+};
 
-module.exports = { port, mongoRoute };
+module.exports = { port, mongoRoute, inputLimit };
