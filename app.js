@@ -1,11 +1,10 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 
-const { initializeMongoDB, insertNonLexicalWords } = require('./services/mongodb');
+const { initializeMongoDB } = require('./services/mongodb');
 const logger = require('./services/logger');
 const { port, mongoRoute } = require('./config');
-const { checkComplexity} = require('./controllers');
-const nlwordsList = require('./services/nlwordsList');
+const { checkComplexity } = require('./controllers');
 
 const app = express();
 
