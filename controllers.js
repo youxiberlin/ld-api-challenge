@@ -14,6 +14,8 @@ const calculateLd = (inputText, nlWordsList) => {
 };
 
 const checkComplexity = async (req, res) => {
+	const isVerbose = req => req.query.mode === 'verbose';
+
 	if (!wordsPool) {
 		const wordsDocs = await Word.find({});
 		const wordsList = wordsDocs.map(doc => doc.word);
@@ -22,11 +24,23 @@ const checkComplexity = async (req, res) => {
 
 	const overall_ld = calculateLd(req.body.text, wordsPool);
 
-	res.send({
-		data: {
-			overall_ld,
-		}
-	});
+	if (isVerbose(req)) {
+		const inputSentences = splitToSentences(req.body.text);
+		const ldArray = inputSentences.map(sentence => calculateLd(sentence, wordsPool));
+		
+		res.send({
+			data: {
+				sentence_ld: ldArray,
+				overall_ld
+			}
+		})
+	} else {
+		res.send({
+			data: {
+				overall_ld,
+			}
+		});
+	}
 };
 
 module.exports = {
